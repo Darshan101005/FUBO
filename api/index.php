@@ -79,16 +79,50 @@ function fetchFuboStream($channelId) {
 
 function getBestStream($masterUrl) {
     $options = [
-        'http' => [
-            'method' => 'GET',
-            'header' => implode("\r\n", [
-                'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-                'Accept: */*',
-                'Accept-Language: en-US,en;q=0.9'
-            ]),
-            'ignore_errors' => true
-        ]
-    ];
+    'http' => [
+        'method' => 'GET',
+        'header' => implode("\r\n", [
+            'accept: */*',
+            'accept-language: en-US,en;q=0.9,ta;q=0.8',
+            'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiYWNjZXNzIiwiaHR0cHM6Ly9yYmFjL2FwcCI6ImZ1Ym90diIsImh0dHBzOi8vcmJhYy9yb2xlcyI6WyJlbmR1c2VyIl0sImRldmljZV9pZCI6IjcwRmdyUGNUQ1ZueURVS0F5VyIsImlzcyI6Imh0dHBzOi8vYXBpLmZ1Ym8udHYiLCJzdWIiOiI2N2U2YjE0ZDJkNDFkODAwMDFlZjViNTciLCJhdWQiOlsia1FzckxKV1JZazNISTRGakxFZXNaNmlSSFlSRGVhZnIiXSwiZXhwIjoxNzQzOTUyMTU2LCJpYXQiOjE3NDM5MTYxNTZ9.LvqHVSksZU01scQ--9ipoHn4BaQyCliwLZtVHqFVSRc',
+            'cache-control: no-cache',
+            'origin: https://www.fubo.tv',
+            'pragma: no-cache',
+            'priority: u=1, i',
+            'referer: https://www.fubo.tv/',
+            'sec-ch-ua: "Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+            'sec-ch-ua-mobile: ?0',
+            'sec-ch-ua-platform: "Windows"',
+            'sec-fetch-dest: empty',
+            'sec-fetch-mode: cors',
+            'sec-fetch-site: same-site',
+            'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+            'x-ad-id: p1BS1TrgWLGibloRzK',
+            'x-application-id: fubo',
+            'x-browser: Chrome',
+            'x-browser-engine: Blink',
+            'x-browser-version: 134.0.0.0',
+            'x-client-version: R20250404.1',
+            'x-device-app: web',
+            'x-device-group: desktop',
+            'x-device-id: 70FgrPcTCVnyDUKAyW',
+            'x-device-model: Windows NT 10.0 Chrome 134.0.0.0',
+            'x-device-platform: desktop',
+            'x-device-type: desktop',
+            'x-drm-scheme: widevine',
+            'x-os: Windows',
+            'x-os-version: NT 10.0',
+            'x-player-version: 4.20.3',
+            'x-preferred-language: en-US',
+            'x-screen-height: 730',
+            'x-screen-width: 654',
+            'x-supported-codecs-list: avc',
+            'x-supported-features: auto_play_up_next,braze_custom_event,catalog_header,card_bottom_scrim,card_score_overlay,custom_loader,folder_sort_options,initial_focus_target,load_channels_in_guide,migrate_messaging,premium_cards,reorder_favorites,scheduled_as_nav_entry,vidai_my_stuff_moments,vidai_timeline_markers',
+            'x-supported-streaming-protocols: hls,dash'
+        ]),
+        'ignore_errors' => true
+    ]
+];
     
     $context = stream_context_create($options);
     $masterResponse = @file_get_contents($masterUrl, false, $context);
@@ -152,43 +186,9 @@ $options = [
     'http' => [
         'method' => 'GET',
         'header' => implode("\r\n", [
-    'accept: */*',
-    'accept-language: en-US,en;q=0.9,ta;q=0.8',
-    'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiYWNjZXNzIiwiaHR0cHM6Ly9yYmFjL2FwcCI6ImZ1Ym90diIsImh0dHBzOi8vcmJhYy9yb2xlcyI6WyJlbmR1c2VyIl0sImRldmljZV9pZCI6IjcwRmdyUGNUQ1ZueURVS0F5VyIsImlzcyI6Imh0dHBzOi8vYXBpLmZ1Ym8udHYiLCJzdWIiOiI2N2U2YjE0ZDJkNDFkODAwMDFlZjViNTciLCJhdWQiOlsia1FzckxKV1JZazNISTRGakxFZXNaNmlSSFlSRGVhZnIiXSwiZXhwIjoxNzQzOTUyMTU2LCJpYXQiOjE3NDM5MTYxNTZ9.LvqHVSksZU01scQ--9ipoHn4BaQyCliwLZtVHqFVSRc',
-    'cache-control: no-cache',
-    'origin: https://www.fubo.tv',
-    'pragma: no-cache',
-    'priority: u=1, i',
-    'referer: https://www.fubo.tv/',
-    'sec-ch-ua: "Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-    'sec-ch-ua-mobile: ?0',
-    'sec-ch-ua-platform: "Windows"',
-    'sec-fetch-dest: empty',
-    'sec-fetch-mode: cors',
-    'sec-fetch-site: same-site',
-    'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-    'x-ad-id: p1BS1TrgWLGibloRzK',
-    'x-application-id: fubo',
-    'x-browser: Chrome',
-    'x-browser-engine: Blink',
-    'x-browser-version: 134.0.0.0',
-    'x-client-version: R20250404.1',
-    'x-device-app: web',
-    'x-device-group: desktop',
-    'x-device-id: 70FgrPcTCVnyDUKAyW',
-    'x-device-model: Windows NT 10.0 Chrome 134.0.0.0',
-    'x-device-platform: desktop',
-    'x-device-type: desktop',
-    'x-drm-scheme: widevine',
-    'x-os: Windows',
-    'x-os-version: NT 10.0',
-    'x-player-version: 4.20.3',
-    'x-preferred-language: en-US',
-    'x-screen-height: 730',
-    'x-screen-width: 654',
-    'x-supported-codecs-list: avc',
-    'x-supported-features: auto_play_up_next,braze_custom_event,catalog_header,card_bottom_scrim,card_score_overlay,custom_loader,folder_sort_options,initial_focus_target,load_channels_in_guide,migrate_messaging,premium_cards,reorder_favorites,scheduled_as_nav_entry,vidai_my_stuff_moments,vidai_timeline_markers',
-    'x-supported-streaming-protocols: hls,dash',
+            'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+            'Accept: */*',
+            'Accept-Language: en-US,en;q=0.9'
         ]),
         'ignore_errors' => true
     ]
