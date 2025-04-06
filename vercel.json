@@ -8,11 +8,11 @@
   ],
   "rewrites": [
     {
-      "source": "/api/(.+)/master.m3u8",
+      "source": "/api/([^/]+)/master\\.m3u8",
       "destination": "/api/index.php"
     },
     {
-      "source": "/api/(.+)/proxy/(.+)/(segment\\.(ts|key))",
+      "source": "/api/([^/]+)/proxy/(.+)",
       "destination": "/api/index.php"
     }
   ],
