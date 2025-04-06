@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "vercel-php"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.+)/master.m3u8",
+      "destination": "/api/index.php"
+    },
+    {
+      "source": "/api/(.+)/proxy/(.+)/(segment\\.(ts|key))",
+      "destination": "/api/index.php"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.+)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "regions": ["iad1"]
+}
